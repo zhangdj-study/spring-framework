@@ -1,10 +1,12 @@
 package org.springframework.mytest.model;
 
+import org.springframework.beans.factory.InitializingBean;
+
 /**
  * @author zhangdj
  * @date 2020/09/14
  */
-public class User {
+public class User implements InitializingBean {
 
 	private Long id;
 
@@ -32,5 +34,10 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+
 	}
 }

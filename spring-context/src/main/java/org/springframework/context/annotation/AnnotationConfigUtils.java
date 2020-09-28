@@ -173,6 +173,7 @@ public abstract class AnnotationConfigUtils {
 		}
 
 		// Check for JSR-250 support, and if present add the CommonAnnotationBeanPostProcessor.
+		// 不支持JSR-250，就不会加入CommonAnnotationBeanPostProcessor的BeanDefinition，就没有CommonAnnotationBeanPostProcessor去处理@Resource注解无法完成属性的注入
 		if (jsr250Present && !registry.containsBeanDefinition(COMMON_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(CommonAnnotationBeanPostProcessor.class);
 			def.setSource(source);

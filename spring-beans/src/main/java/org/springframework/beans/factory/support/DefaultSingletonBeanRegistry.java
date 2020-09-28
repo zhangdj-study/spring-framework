@@ -231,6 +231,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					this.suppressedExceptions = new LinkedHashSet<>();
 				}
 				try {
+					// 这里需要用到singletonFactory 调用createBean获取singletonFactory
 					singletonObject = singletonFactory.getObject();
 					newSingleton = true;
 				}

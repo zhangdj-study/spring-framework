@@ -109,6 +109,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * @see #refresh
 	 */
 	public GenericApplicationContext() {
+		// 初始化beanFactory DefaultListableBeanFactory是功能最全的
 		this.beanFactory = new DefaultListableBeanFactory();
 	}
 
