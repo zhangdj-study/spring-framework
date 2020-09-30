@@ -587,7 +587,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				logger.trace("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
 			}
-			// 第四次调用后置处理器,判断是否需要AOP
+			// 第四次调用后置处理器,判断是否需要AOP 提前暴露对象
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 
@@ -1786,6 +1786,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}, getAccessControlContext());
 		}
 		else {
+			// 如果bean实现了BeanNameAware、BeanClassLoaderAware或BeanFactoryAware，把相应的资源放入bean
 			invokeAwareMethods(beanName, bean);
 		}
 
@@ -1796,7 +1797,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		try {
-			// 初始化
+			// 初始化 如果实现了InitializingBean就执行afterPropertiesSet方法，然后执行自己的init-method
 			invokeInitMethods(beanName, wrappedBean, mbd);
 		}
 		catch (Throwable ex) {

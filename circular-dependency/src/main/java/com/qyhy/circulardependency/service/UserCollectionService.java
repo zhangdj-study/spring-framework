@@ -3,6 +3,8 @@ package com.qyhy.circulardependency.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -14,8 +16,10 @@ import javax.annotation.Resource;
 public class UserCollectionService {
 
 	@Autowired
-	@Qualifier("userService")
-	UserService userService;
+	private UserService userService;
+
+	@Autowired
+	private TestService testService;
 
 	public UserCollectionService() {
 		System.out.println("UserCollectionService Constructor");

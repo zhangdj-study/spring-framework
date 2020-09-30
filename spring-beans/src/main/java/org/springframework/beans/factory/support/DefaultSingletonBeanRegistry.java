@@ -181,6 +181,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// Quick check for existing instance without full singleton lock
 		Object singletonObject = this.singletonObjects.get(beanName);
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
+			// earlySingletonObjects三级缓存 是spring为了解决性能问题  防止循环引用同一个对象时每次从singletonFactories二级缓存中多次处理同一个对象，所以在第一次产生对象时直接缓存起来
 			singletonObject = this.earlySingletonObjects.get(beanName);
 			if (singletonObject == null && allowEarlyReference) {
 				synchronized (this.singletonObjects) {
