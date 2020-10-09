@@ -587,7 +587,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				logger.trace("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
 			}
-			// 第四次调用后置处理器,判断是否需要AOP 提前暴露对象
+			// 第四次调用后置处理器,判断是否需要AOP 提前暴露对象   将bean存到工厂中，后续可以通过工厂拿到对象（通过工厂可以返回aop需要的代理对象）
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 
@@ -1792,7 +1792,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		Object wrappedBean = bean;
 		if (mbd == null || !mbd.isSynthetic()) {
-			// 初始化前 调用Bean后置处理器
+			// 初始化前 调用Bean后置处理器 处理@PostConstruct标注的方法
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
 		}
 
@@ -1806,7 +1806,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					beanName, "Invocation of init method failed", ex);
 		}
 		if (mbd == null || !mbd.isSynthetic()) {
-			// 初始化后 调用Bean后置处理器
+			// 初始化后 调用Bean后置处理器   aop处理
 			wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
 		}
 

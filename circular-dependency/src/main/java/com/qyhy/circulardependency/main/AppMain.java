@@ -14,10 +14,6 @@ public class AppMain {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		UserService userService = applicationContext.getBean(UserService.class);
-		System.out.println(userService);
-		userService.invoke();
-		System.out.println("------------------------");
-		UserCollectionService userCollectionService = applicationContext.getBean(UserCollectionService.class);
-		System.out.println(userCollectionService);
+		userService.getUserCollectionService();
 	}
 }

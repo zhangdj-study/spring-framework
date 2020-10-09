@@ -18,9 +18,6 @@ public class UserCollectionService {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private TestService testService;
-
 	public UserCollectionService() {
 		System.out.println("UserCollectionService Constructor");
 	}

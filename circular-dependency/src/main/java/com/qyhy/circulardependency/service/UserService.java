@@ -2,6 +2,7 @@ package com.qyhy.circulardependency.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,13 +14,11 @@ import javax.annotation.PostConstruct;
  * @date 2020/09/25
  */
 @Service
+@Lazy
 public class UserService {
 
 	@Autowired
 	UserCollectionService userCollectionService;
-
-	@Autowired
-	private TestService testService;
 
 	public UserService() {
 		System.out.println("UserService Constructor");
@@ -35,6 +34,7 @@ public class UserService {
 	}
 
 	public UserCollectionService getUserCollectionService() {
+		System.out.println("logic------------");
 		return userCollectionService;
 	}
 
