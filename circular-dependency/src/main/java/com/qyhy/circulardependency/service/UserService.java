@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 @Lazy
 public class UserService {
 
-	@Autowired
+//	@Autowired
 	UserCollectionService userCollectionService;
 
 	public UserService() {

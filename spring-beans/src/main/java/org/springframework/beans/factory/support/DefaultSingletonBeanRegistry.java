@@ -190,6 +190,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (singletonObject == null) {
 						singletonObject = this.earlySingletonObjects.get(beanName);
 						if (singletonObject == null) {
+							// singletonFactories 二级缓存 缓存的是工厂 解决了循环依赖时，要注入某些代理对象例如aop
 							ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 							if (singletonFactory != null) {
 								// 如果需要aop 则返回bean的代理对象

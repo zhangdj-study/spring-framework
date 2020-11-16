@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author zhangdj
  * @date 2020/09/30
  */
-@Component
+//@Component
 @Aspect
 public class NotVeryUsefulAspect {
 

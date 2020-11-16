@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  * @author zhangdj
  * @date 2020/09/25
  */
-@Service
+//@Service
 public class UserCollectionService {
 
 	@Autowired
