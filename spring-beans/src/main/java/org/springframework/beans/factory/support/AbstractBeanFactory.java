@@ -258,6 +258,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					logger.trace("Returning cached instance of singleton bean '" + beanName + "'");
 				}
 			}
+			// 如果是FactoryBean会特殊处理 因为FactoryBean需要返回的是getObject()方法返回对象并不是FactoryBean本身
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
 
@@ -271,6 +272,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 			// Check if bean definition exists in this factory.获取父容器 没有整合springMVC获取不到
 			BeanFactory parentBeanFactory = getParentBeanFactory();
+			// 当前容器获取不到从父容器获取
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 				// Not found -> check parent.
 				String nameToLookup = originalBeanName(name);

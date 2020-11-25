@@ -14,10 +14,9 @@ import javax.annotation.PostConstruct;
  * @date 2020/09/25
  */
 @Service
-@Lazy
 public class UserService {
 
-//	@Autowired
+	@Autowired
 	UserCollectionService userCollectionService;
 
 	public UserService() {

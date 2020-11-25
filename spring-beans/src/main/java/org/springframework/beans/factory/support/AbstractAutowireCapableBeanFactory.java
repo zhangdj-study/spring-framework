@@ -608,10 +608,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 						mbd.getResourceDescription(), beanName, "Initialization of bean failed", ex);
 			}
 		}
-
+		// todo 整明白
 		if (earlySingletonExposure) {
 			Object earlySingletonReference = getSingleton(beanName, false);
 			if (earlySingletonReference != null) {
+				// 判断initializeBean处理过后的bean和创建的实例是否相同
 				if (exposedObject == bean) {
 					exposedObject = earlySingletonReference;
 				}
