@@ -200,7 +200,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		context.pushContainingComponent(compDefinition);
 
 		RuntimeBeanReference contentNegotiationManager = getContentNegotiationManager(element, source, context);
-
+		// 生成RequestMappingHandlerMapping（处理@Controller注解）的BeanDefinition
 		RootBeanDefinition handlerMappingDef = new RootBeanDefinition(RequestMappingHandlerMapping.class);
 		handlerMappingDef.setSource(source);
 		handlerMappingDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
@@ -236,7 +236,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		RuntimeBeanReference asyncExecutor = getAsyncExecutor(element);
 		ManagedList<?> callableInterceptors = getInterceptors(element, source, context, "callable-interceptors");
 		ManagedList<?> deferredResultInterceptors = getInterceptors(element, source, context, "deferred-result-interceptors");
-
+		// RequestMappingHandlerAdapter的BeanDefinition
 		RootBeanDefinition handlerAdapterDef = new RootBeanDefinition(RequestMappingHandlerAdapter.class);
 		handlerAdapterDef.setSource(source);
 		handlerAdapterDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);

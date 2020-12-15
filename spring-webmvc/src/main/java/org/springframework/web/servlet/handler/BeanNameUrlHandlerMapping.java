@@ -51,6 +51,9 @@ public class BeanNameUrlHandlerMapping extends AbstractDetectingUrlHandlerMappin
 
 	/**
 	 * Checks name and aliases of the given bean for URLs, starting with "/".
+	 *
+	 * <bean name="/simple" class="com.neusiri.controller.BeanController"/>
+	 * 直接访问/simple 直接由BeanController处理
 	 */
 	@Override
 	protected String[] determineUrlsForHandler(String beanName) {
