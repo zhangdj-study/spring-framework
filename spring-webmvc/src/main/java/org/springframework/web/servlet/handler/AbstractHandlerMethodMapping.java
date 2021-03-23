@@ -380,6 +380,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 * @return the best-matching handler method, or {@code null} if no match
 	 * @see #handleMatch(Object, String, HttpServletRequest)
 	 * @see #handleNoMatch(Set, String, HttpServletRequest)
+	 * 通过请求配置处理器
 	 */
 	@Nullable
 	protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
@@ -402,6 +403,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				if (logger.isTraceEnabled()) {
 					logger.trace(matches.size() + " matching mappings: " + matches);
 				}
+				// 跨域处理 ？
 				if (CorsUtils.isPreFlightRequest(request)) {
 					return PREFLIGHT_AMBIGUOUS_MATCH;
 				}

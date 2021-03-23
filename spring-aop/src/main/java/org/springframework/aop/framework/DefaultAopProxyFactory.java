@@ -48,6 +48,7 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 
 	@Override
 	public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
+		// 根据条件判断   config.isProxyTargetClass()默认为false 可以通过@EnableAspectJAutoProxy(proxyTargetClass = true)设置为true
 		if (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) {
 			Class<?> targetClass = config.getTargetClass();
 			if (targetClass == null) {
@@ -57,9 +58,11 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 			if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
 				return new JdkDynamicAopProxy(config);
 			}
+			// 创建cglib代理
 			return new ObjenesisCglibAopProxy(config);
 		}
 		else {
+			// 创建jdk动态代理
 			return new JdkDynamicAopProxy(config);
 		}
 	}

@@ -290,6 +290,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * Create a proxy with the configured interceptors if the bean is
 	 * identified as one to proxy by the subclass.
 	 * @see #getAdvicesAndAdvisorsForBean
+	 * 创建代理
 	 */
 	@Override
 	public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) {
